@@ -1,0 +1,119 @@
+# ========================================
+# DOCKER COMPOSE CONFIGURATION
+# ========================================
+# This file runs multiple containers together
+# Think of it as: "Start my app, database, and cache all at once"
+
+version: '3.8'
+
+services:
+  # ========================================
+  # POSTGRESQL DATABASE
+  # ========================================
+  postgres:
+    image: postgres:16-alpine  # Official PostgreSQL image
+    container_name: taskmanagement-db
+    restart: unless-stopped  # Auto-restart if crashes
+    
+    environment:
+      # These must match DATABASE_URL in backend/.env
+      POSTGRES_USER: taskuser
+      POSTGRES_PASSWORD: taskpassword
+      POSTGRES_DB: taskmanagement
+    
+    ports:
+      - "5432:5432"  # Access database from host machine
+    
+    volumes:
+      # Persist data even if container is deleted
+      # Without this, you lose all data when container stops!
+      - postgres_data:/var/lib/postgresql/data
+    
+    healthcheck:
+      # Check if database is ready
+      test: ["CMD-SHELL", "pg_isready -U taskuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # REDIS CACHE
+  # ========================================
+  redis:
+    image: redis:7-alpine
+    container_name: taskmanagement-redis
+    restart: unless-stopped
+    
+    ports:
+      - "6379:6379"
+    
+    volumes:
+      - redis_data:/data
+    
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========================================
+  # BACKEND API
+  # ========================================
+  backend:
+    build:
+      context: ./backend  # Build from backend/Dockerfile
+      dockerfile: Dockerfile
+    
+    container_name: taskmanagement-backend
+    restart: unless-stopped
+    
+    ports:
+      - "5000:5000"  # API accessible at http://localhost:5000
+    
+    environment:
+      - NODE_ENV=development
+    
+    volumes:
+      # Mount source code so changes reflect immediately (hot reload)
+      - ./backend:/app
+      # Don't mount node_modules (use container's version)
+      - /app/node_modules
+    
+    # Wait for database and redis to be ready before starting
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    
+    # Override default CMD with nodemon for development
+    command: npm run dev
+
+  # ========================================
+  # FRONTEND (Next.js)
+  # ========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: taskmanagement-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+    command: npm run dev
+
+# ========================================
+# VOLUMES
+# ========================================
+# Named volumes for persistent data
+volumes:
+  postgres_data:  # Database files stored here
+  redis_data:     # Redis cache stored here

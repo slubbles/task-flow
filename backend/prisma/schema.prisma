@@ -1,0 +1,185 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+// WHAT IS THIS FILE?
+// This defines your database structure (tables, columns, relationships)
+// Prisma reads this and creates the actual database tables for you
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"  // We're using PostgreSQL database
+  url      = env("DATABASE_URL")  // Connection string from .env file
+}
+
+// ========================================
+// USER MODEL
+// ========================================
+// Represents a user in the system
+model User {
+  id        String   @id @default(uuid())  // UUID = Unique ID (like "abc-123-def")
+  email     String   @unique  // Must be unique across all users
+  password  String   // Hashed password (never store plain text!)
+  name      String
+  role      Role     @default(MEMBER)  // User role (see enum below)
+  avatar    String?  // Optional profile picture URL (? means optional)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt  // Auto-updates when user is modified
+  
+  // RELATIONSHIPS (how users connect to other tables)
+  ownedProjects     Project[]  @relation("ProjectOwner")  // Projects user created
+  assignedTasks     Task[]     @relation("TaskAssignee")  // Tasks assigned to user
+  createdTasks      Task[]     @relation("TaskCreator")   // Tasks user created
+  comments          Comment[]  // Comments user wrote
+  activityLogs      ActivityLog[]  // Actions user performed
+  
+  @@map("users")  // Actual table name in database will be "users"
+}
+
+// ========================================
+// ROLE ENUM
+// ========================================
+// Defines what types of users exist
+enum Role {
+  ADMIN    // Can do everything
+  MANAGER  // Can create projects, manage teams
+  MEMBER   // Regular user, can be assigned tasks
+}
+
+// ========================================
+// PROJECT MODEL
+// ========================================
+// A project contains multiple tasks
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  status      ProjectStatus @default(ACTIVE)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // FOREIGN KEYS (connections to other tables)
+  ownerId     String  // Links to User.id
+  owner       User    @relation("ProjectOwner", fields: [ownerId], references: [id])
+  
+  // RELATIONSHIPS
+  tasks       Task[]  // All tasks in this project
+  
+  @@map("projects")
+}
+
+// ========================================
+// PROJECT STATUS ENUM
+// ========================================
+enum ProjectStatus {
+  ACTIVE      // Currently being worked on
+  COMPLETED   // Finished
+  ON_HOLD     // Paused temporarily
+  ARCHIVED    // Old/cancelled projects
+}
+
+// ========================================
+// TASK MODEL
+// ========================================
+// Individual task within a project
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  status      TaskStatus @default(TODO)
+  priority    Priority   @default(MEDIUM)
+  dueDate     DateTime?  // Optional deadline
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // FOREIGN KEYS
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  // onDelete: Cascade means if project is deleted, all its tasks are also deleted
+  
+  assigneeId  String?  // Who is doing this task (optional)
+  assignee    User?    @relation("TaskAssignee", fields: [assigneeId], references: [id])
+  
+  creatorId   String   // Who created this task
+  creator     User     @relation("TaskCreator", fields: [creatorId], references: [id])
+  
+  // RELATIONSHIPS
+  comments    Comment[]  // Comments on this task
+  activityLogs ActivityLog[]  // History of changes
+  
+  @@map("tasks")
+  @@index([projectId])  // Makes queries by projectId faster
+  @@index([assigneeId])
+}
+
+// ========================================
+// TASK STATUS ENUM
+// ========================================
+enum TaskStatus {
+  TODO         // Not started
+  IN_PROGRESS  // Currently being worked on
+  IN_REVIEW    // Done, waiting for review
+  COMPLETED    // Finished and approved
+}
+
+// ========================================
+// PRIORITY ENUM
+// ========================================
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+// ========================================
+// COMMENT MODEL
+// ========================================
+// Comments on tasks (like Trello comments)
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // FOREIGN KEYS
+  taskId    String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  
+  @@map("comments")
+  @@index([taskId])
+}
+
+// ========================================
+// ACTIVITY LOG MODEL
+// ========================================
+// Tracks all changes (audit trail)
+// Example: "John changed task status from TODO to IN_PROGRESS"
+model ActivityLog {
+  id          String   @id @default(uuid())
+  action      String   // What happened (e.g., "created", "updated", "deleted")
+  entityType  String   // What was changed (e.g., "task", "project")
+  entityId    String   // ID of the thing that was changed
+  changes     String?  // JSON string of what changed
+  
+  createdAt   DateTime @default(now())
+  
+  // FOREIGN KEYS
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  
+  taskId      String?  // Optional link to task
+  task        Task?    @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  
+  @@map("activity_logs")
+  @@index([entityType, entityId])
+  @@index([userId])
+}
