@@ -159,7 +159,90 @@ const sendWelcomeEmail = async (email, name) => {
   }
 };
 
+/**
+ * SEND PASSWORD RESET EMAIL
+ * Sends email with password reset link
+ */
+const sendPasswordResetEmail = async (email, name, resetToken) => {
+  try {
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+    
+    const { data, error } = await resend.emails.send({
+      from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
+      to: email,
+      subject: 'Reset your TaskFlow password',
+      html: `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+              .header { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+              .header h1 { color: white; margin: 0; font-size: 28px; }
+              .content { background: #f9fafb; padding: 40px 30px; border-radius: 0 0 10px 10px; }
+              .button { display: inline-block; padding: 15px 40px; background: #ef4444; color: white !important; text-decoration: none; border-radius: 8px; font-weight: bold; margin: 20px 0; }
+              .button:hover { background: #dc2626; }
+              .footer { text-align: center; padding: 20px; color: #6b7280; font-size: 14px; }
+              .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; border-radius: 5px; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>🔐 Password Reset Request</h1>
+              </div>
+              <div class="content">
+                <h2>Hi ${name},</h2>
+                <p>We received a request to reset your TaskFlow password.</p>
+                <p>Click the button below to reset your password:</p>
+                
+                <div style="text-align: center;">
+                  <a href="${resetUrl}" class="button">Reset Password</a>
+                </div>
+                
+                <p>Or copy and paste this link into your browser:</p>
+                <div style="word-break: break-all; background: #e5e7eb; padding: 10px; border-radius: 5px;">
+                  ${resetUrl}
+                </div>
+                
+                <div class="warning">
+                  <strong>⚠️ Security Notice:</strong><br>
+                  This link will expire in <strong>1 hour</strong>.<br>
+                  If you didn't request this reset, please ignore this email and your password will remain unchanged.
+                </div>
+                
+                <p style="margin-top: 20px; font-size: 14px; color: #6b7280;">
+                  For your security, this link can only be used once.
+                </p>
+              </div>
+              <div class="footer">
+                <p>TaskFlow - Enterprise Task Management</p>
+                <p>&copy; 2025 TaskFlow. All rights reserved.</p>
+              </div>
+            </div>
+          </body>
+        </html>
+      `,
+    });
+
+    if (error) {
+      logger.error('Resend API error:', error);
+      throw new Error('Failed to send password reset email');
+    }
+
+    logger.info(`Password reset email sent to ${email} (ID: ${data.id})`);
+    return data;
+    
+  } catch (error) {
+    logger.error('Error sending password reset email:', error);
+    throw error;
+  }
+};
+
 module.exports = {
   sendVerificationEmail,
   sendWelcomeEmail,
+  sendPasswordResetEmail,
 };

@@ -35,6 +35,10 @@ model User {
   verificationToken String? // Token sent in verification email
   verificationTokenExpiry DateTime? // When verification token expires
   
+  // Password reset fields
+  resetPasswordToken String? // Token for password reset
+  resetPasswordExpiry DateTime? // When reset token expires
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt  // Auto-updates when user is modified
   
