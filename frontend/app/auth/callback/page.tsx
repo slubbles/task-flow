@@ -26,10 +26,22 @@ function AuthCallbackContent() {
     }
 
     if (token) {
-      // Fetch user profile with the token
-      const fetchUserProfile = async () => {
+      // Decode JWT to get user info
+      const completeSignIn = async () => {
         try {
-          const response = await apiClient.get('/users/profile', {
+          // Decode the JWT token to extract user data
+          const base64Url = token.split('.')[1];
+          const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+          const jsonPayload = decodeURIComponent(
+            atob(base64)
+              .split('')
+              .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+              .join('')
+          );
+          const decoded = JSON.parse(jsonPayload);
+
+          // Fetch user details from /users/:id endpoint
+          const response = await apiClient.get(`/users/${decoded.userId}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -39,13 +51,13 @@ function AuthCallbackContent() {
           setAuth(response.data, token);
           router.push('/dashboard');
         } catch (err: any) {
-          console.error('Failed to fetch user profile:', err);
+          console.error('Failed to complete OAuth sign in:', err);
           setError('Failed to complete sign in');
           setTimeout(() => router.push('/login'), 2000);
         }
       };
 
-      fetchUserProfile();
+      completeSignIn();
     } else {
       // No token received - redirect to login
       router.push('/login');
