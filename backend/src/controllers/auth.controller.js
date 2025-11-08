@@ -293,10 +293,71 @@ const verifyEmail = async (req, res, next) => {
   }
 };
 
+/**
+ * CHANGE PASSWORD
+ * PUT /api/auth/change-password
+ */
+const changePassword = async (req, res, next) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    // 1. Validate input
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({
+        error: 'Current password and new password are required'
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        error: 'New password must be at least 6 characters'
+      });
+    }
+
+    // 2. Get user with password
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id }
+    });
+
+    if (!user || !user.password) {
+      return res.status(400).json({
+        error: 'User not found or uses OAuth authentication'
+      });
+    }
+
+    // 3. Verify current password
+    const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        error: 'Current password is incorrect'
+      });
+    }
+
+    // 4. Hash new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // 5. Update password
+    await prisma.user.update({
+      where: { id: req.user.id },
+      data: { password: hashedNewPassword }
+    });
+
+    logger.info(`Password changed for user: ${req.user.email}`);
+
+    res.json({
+      message: 'Password changed successfully'
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
   getProfile,
   updateProfile,
+  changePassword,
   verifyEmail
 };

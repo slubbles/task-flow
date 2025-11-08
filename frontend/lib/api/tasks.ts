@@ -16,6 +16,20 @@ export interface Task {
   creatorId: string;
   createdAt: string;
   updatedAt: string;
+  assignee?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  creator?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  project?: {
+    id: string;
+    name: string;
+  };
 }
 
 export const getTasks = async (filters?: {
