@@ -106,17 +106,17 @@ export default function ProjectsPage() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         <Navbar />
 
-        <main className="container mx-auto p-6">
+        <main className="container mx-auto p-4 sm:p-6">
           {/* Header */}
           <motion.div
-            className="mb-8 flex items-center justify-between"
+            className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
           >
             <div>
-              <h1 className="mb-2 text-3xl font-bold">Projects</h1>
-              <p className="text-gray-600">Manage your team's projects</p>
+              <h1 className="mb-2 text-2xl sm:text-3xl font-bold">Projects</h1>
+              <p className="text-sm sm:text-base text-gray-600">Manage your team's projects</p>
             </div>
 
             {canCreateProject && (
@@ -125,8 +125,9 @@ export default function ProjectsPage() {
                   <motion.div
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto"
                   >
-                    <Button className="gap-2">
+                    <Button className="gap-2 w-full sm:w-auto">
                       <svg
                         className="h-4 w-4"
                         fill="none"
@@ -154,7 +155,7 @@ export default function ProjectsPage() {
 
                   <form onSubmit={handleCreateProject} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Project Name*</Label>
+                      <Label htmlFor="name" className="text-sm font-medium">Project Name*</Label>
                       <Input
                         id="name"
                         value={newProject.name}
@@ -168,7 +169,7 @@ export default function ProjectsPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="description">Description</Label>
+                      <Label htmlFor="description" className="text-sm font-medium">Description</Label>
                       <Input
                         id="description"
                         value={newProject.description}
@@ -180,16 +181,17 @@ export default function ProjectsPage() {
                       />
                     </div>
 
-                    <div className="flex justify-end gap-4">
+                    <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
                       <Button
                         type="button"
                         variant="outline"
                         onClick={() => setIsCreateOpen(false)}
                         disabled={isLoading}
+                        className="w-full sm:w-auto"
                       >
                         Cancel
                       </Button>
-                      <Button type="submit" disabled={isLoading}>
+                      <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">
                         {isLoading ? (
                           <>
                             <svg
@@ -228,7 +230,7 @@ export default function ProjectsPage() {
           {/* Projects List */}
           {storeLoading ? (
             <motion.div
-              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3"
               initial="hidden"
               animate="visible"
               variants={stagger}
@@ -273,7 +275,7 @@ export default function ProjectsPage() {
                     <FolderKanban className="h-12 w-12 text-primary" />
                   </motion.div>
                   <motion.p 
-                    className="mb-2 text-xl font-semibold text-foreground"
+                    className="mb-2 text-lg sm:text-xl font-semibold text-foreground"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
@@ -281,7 +283,7 @@ export default function ProjectsPage() {
                     Time to kickstart something new!
                   </motion.p>
                   <motion.p 
-                    className="mb-8 text-center text-sm text-muted-foreground max-w-sm"
+                    className="mb-6 sm:mb-8 text-center text-xs sm:text-sm text-muted-foreground max-w-sm px-4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
@@ -294,7 +296,7 @@ export default function ProjectsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
                     >
-                      <Button size="lg" onClick={() => setIsCreateOpen(true)} className="gap-2">
+                      <Button size="lg" onClick={() => setIsCreateOpen(true)} className="gap-2 w-full sm:w-auto">
                         <Plus className="h-5 w-5" />
                         Create Your First Project
                       </Button>
@@ -305,7 +307,7 @@ export default function ProjectsPage() {
             </motion.div>
           ) : (
             <motion.div
-              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3"
               initial="hidden"
               animate="visible"
               variants={stagger}
@@ -318,8 +320,8 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.2 }}
                     >
                       <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50">
-                        <div className="flex items-start justify-between">
-                          <CardTitle className="text-lg">{project.name}</CardTitle>
+                        <div className="flex items-start justify-between gap-2">
+                          <CardTitle className="text-base sm:text-lg">{project.name}</CardTitle>
                           <Badge
                             variant={
                               project.status === 'ACTIVE'
@@ -332,12 +334,12 @@ export default function ProjectsPage() {
                             {project.status}
                           </Badge>
                         </div>
-                        <CardDescription>
+                        <CardDescription className="text-xs sm:text-sm">
                           {project.description || 'No description'}
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="pt-4">
-                        <div className="space-y-3 text-sm">
+                        <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
                           <div className="flex items-center gap-2 text-gray-600">
                             <svg
                               className="h-4 w-4 text-blue-600"

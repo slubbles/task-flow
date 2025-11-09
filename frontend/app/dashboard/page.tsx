@@ -89,21 +89,21 @@ export default function DashboardPage() {
         <Navbar />
 
         {/* Main Content */}
-        <main className="container mx-auto p-6">
+        <main className="container mx-auto p-4 sm:p-6">
         <motion.div
-          className="mb-8"
+          className="mb-6 sm:mb-8"
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
         >
-          <h2 className="mb-2 text-3xl font-bold">
+          <h2 className="mb-2 text-2xl sm:text-3xl font-bold">
             Welcome back, {user?.name?.split(' ')[0] || 'User'}! 👋
           </h2>
-          <p className="text-gray-600">Here's what's happening with your projects today</p>
+          <p className="text-sm sm:text-base text-gray-600">Here's what's happening with your projects today</p>
         </motion.div>
 
         <motion.div
-          className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           animate="visible"
           variants={stagger}
@@ -350,7 +350,7 @@ export default function DashboardPage() {
 
         {/* Quick Actions Section */}
         <motion.div
-          className="mt-8"
+          className="mt-6 sm:mt-8"
           initial="hidden"
           animate="visible"
           variants={fadeInUp}
@@ -358,9 +358,9 @@ export default function DashboardPage() {
         >
           <Card className="border-2 border-dashed border-gray-200 bg-white/50 shadow-sm backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                 <svg
-                  className="h-5 w-5 text-blue-600"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -374,16 +374,17 @@ export default function DashboardPage() {
                 </svg>
                 Quick Actions
               </CardTitle>
-              <CardDescription>Get started with your work</CardDescription>
+              <CardDescription className="text-xs sm:text-sm">Get started with your work</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/projects">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link href="/projects" className="flex-1">
                   <motion.div
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
+                    className="w-full"
                   >
-                    <Button className="gap-2">
+                    <Button className="gap-2 w-full sm:w-auto">
                       <svg
                         className="h-4 w-4"
                         fill="none"
@@ -401,12 +402,13 @@ export default function DashboardPage() {
                     </Button>
                   </motion.div>
                 </Link>
-                <Link href="/tasks">
+                <Link href="/tasks" className="flex-1">
                   <motion.div
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
+                    className="w-full"
                   >
-                    <Button variant="outline" className="gap-2">
+                    <Button variant="outline" className="gap-2 w-full sm:w-auto">
                       <svg
                         className="h-4 w-4"
                         fill="none"
