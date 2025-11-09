@@ -142,16 +142,16 @@ export default function ProfilePage() {
     <ProtectedRoute>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <Navbar />
-        <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <main className="mx-auto max-w-7xl px-4 py-6 sm:py-8 sm:px-6 lg:px-8">
           {/* Header */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
-            <h1 className="mb-2 text-4xl font-bold text-gray-900">Profile Settings</h1>
-            <p className="text-gray-600">Manage your account settings and preferences</p>
+            <h1 className="mb-2 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Profile Settings</h1>
+            <p className="text-sm sm:text-base text-gray-600">Manage your account settings and preferences</p>
           </motion.div>
 
           {/* Profile Info Section */}
@@ -160,21 +160,21 @@ export default function ProfilePage() {
             animate="visible"
             variants={fadeInUp}
             transition={{ delay: 0.1 }}
-            className="mb-6"
+            className="mb-4 sm:mb-6"
           >
             <Card>
               <CardHeader>
-                <div className="flex items-center gap-4">
-                  <Avatar className="h-20 w-20">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+                  <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
                     <AvatarImage src={user?.avatar} alt={user?.name} />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-xl text-white">
+                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-lg sm:text-xl text-white">
                       {user?.name ? getInitials(user.name) : "U"}
                     </AvatarFallback>
                   </Avatar>
-                  <div>
-                    <CardTitle className="text-2xl">{user?.name}</CardTitle>
-                    <CardDescription className="text-base">{user?.email}</CardDescription>
-                    <div className="mt-2 flex items-center gap-2">
+                  <div className="text-center sm:text-left">
+                    <CardTitle className="text-xl sm:text-2xl">{user?.name}</CardTitle>
+                    <CardDescription className="text-sm sm:text-base">{user?.email}</CardDescription>
+                    <div className="mt-2 flex flex-col sm:flex-row items-center gap-2">
                       <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
                         {user?.role || "Member"}
                       </span>
@@ -188,7 +188,7 @@ export default function ProfilePage() {
             </Card>
           </motion.div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
             {/* Update Profile Form */}
             <motion.div
               initial="hidden"
@@ -198,13 +198,13 @@ export default function ProfilePage() {
             >
               <Card>
                 <CardHeader>
-                  <CardTitle>Personal Information</CardTitle>
-                  <CardDescription>Update your profile details</CardDescription>
+                  <CardTitle className="text-lg sm:text-xl">Personal Information</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm">Update your profile details</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleProfileUpdate} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
+                      <Label htmlFor="name" className="text-sm font-medium">Full Name</Label>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                         <Input
@@ -221,7 +221,7 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
+                      <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                         <Input
@@ -229,7 +229,7 @@ export default function ProfilePage() {
                           type="email"
                           value={profileData.email}
                           disabled
-                          className="cursor-not-allowed bg-muted pl-10 opacity-75"
+                          className="cursor-not-allowed bg-muted pl-10 opacity-75 text-sm"
                         />
                       </div>
                       <p className="text-xs text-muted-foreground">Email cannot be changed</p>
@@ -240,7 +240,7 @@ export default function ProfilePage() {
                     <Button
                       type="submit"
                       disabled={isLoadingProfile}
-                      className="w-full"
+                      className="w-full text-sm sm:text-base"
                     >
                       {isLoadingProfile ? (
                         <div className="flex items-center gap-2">
@@ -265,13 +265,13 @@ export default function ProfilePage() {
             >
               <Card>
                 <CardHeader>
-                  <CardTitle>Change Password</CardTitle>
-                  <CardDescription>Update your password to keep your account secure</CardDescription>
+                  <CardTitle className="text-lg sm:text-xl">Change Password</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm">Update your password to keep your account secure</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handlePasswordChange} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="currentPassword">Current Password</Label>
+                      <Label htmlFor="currentPassword" className="text-sm font-medium">Current Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground z-10" />
                         <Input
@@ -297,7 +297,7 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="newPassword">New Password</Label>
+                      <Label htmlFor="newPassword" className="text-sm font-medium">New Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground z-10" />
                         <Input
@@ -308,7 +308,7 @@ export default function ProfilePage() {
                             setPasswordData({ ...passwordData, newPassword: e.target.value })
                           }
                           placeholder="Enter new password"
-                          className="pl-10 pr-10 transition-all focus:ring-2 focus:ring-primary"
+                          className="pl-10 pr-10 transition-all focus:ring-2 focus:ring-primary text-sm"
                         />
                         <button
                           type="button"
@@ -324,7 +324,7 @@ export default function ProfilePage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                      <Label htmlFor="confirmPassword" className="text-sm font-medium">Confirm New Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground z-10" />
                         <Input
@@ -335,7 +335,7 @@ export default function ProfilePage() {
                             setPasswordData({ ...passwordData, confirmPassword: e.target.value })
                           }
                           placeholder="Confirm new password"
-                          className="pl-10 pr-10 transition-all focus:ring-2 focus:ring-primary"
+                          className="pl-10 pr-10 transition-all focus:ring-2 focus:ring-primary text-sm"
                         />
                         <button
                           type="button"
@@ -359,7 +359,7 @@ export default function ProfilePage() {
                     <Button
                       type="submit"
                       disabled={isLoadingPassword}
-                      className="w-full"
+                      className="w-full text-sm sm:text-base"
                       variant="outline"
                     >
                       {isLoadingPassword ? (
@@ -383,22 +383,22 @@ export default function ProfilePage() {
             animate="visible"
             variants={fadeInUp}
             transition={{ delay: 0.4 }}
-            className="mt-6"
+            className="mt-4 sm:mt-6"
           >
             <Card className="border-red-200">
               <CardHeader>
-                <CardTitle className="text-red-600">Danger Zone</CardTitle>
-                <CardDescription>Irreversible actions for your account</CardDescription>
+                <CardTitle className="text-lg sm:text-xl text-red-600">Danger Zone</CardTitle>
+                <CardDescription className="text-xs sm:text-sm">Irreversible actions for your account</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                   <div>
-                    <p className="font-medium text-gray-900">Delete Account</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="font-medium text-sm sm:text-base text-gray-900">Delete Account</p>
+                    <p className="text-xs sm:text-sm text-gray-600">
                       Permanently delete your account and all associated data
                     </p>
                   </div>
-                  <Button variant="destructive" disabled>
+                  <Button variant="destructive" disabled className="w-full sm:w-auto text-sm">
                     Delete Account
                   </Button>
                 </div>

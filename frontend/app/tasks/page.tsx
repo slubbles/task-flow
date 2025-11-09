@@ -228,25 +228,26 @@ export default function TasksPage() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50">
         <Navbar />
 
-        <main className="container mx-auto p-6">
+        <main className="container mx-auto p-4 sm:p-6">
           {/* Header */}
           <motion.div
-            className="mb-8 flex items-center justify-between"
+            className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
             initial="hidden"
             animate="visible"
             variants={fadeInUp}
           >
             <div>
-              <h1 className="mb-2 text-3xl font-bold">Tasks</h1>
-              <p className="text-gray-600">Manage all your tasks</p>
+              <h1 className="mb-2 text-2xl sm:text-3xl font-bold">Tasks</h1>
+              <p className="text-sm sm:text-base text-gray-600">Manage all your tasks</p>
             </div>
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
               <DialogTrigger asChild>
                 <motion.div
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
+                  className="w-full sm:w-auto"
                 >
-                  <Button className="gap-2">
+                  <Button className="gap-2 w-full sm:w-auto">
                     <svg
                       className="h-4 w-4"
                       fill="none"
@@ -273,7 +274,7 @@ export default function TasksPage() {
                 </DialogHeader>
                 <form onSubmit={handleCreateTask} className="space-y-4 mt-4">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Task Title *</Label>
+                    <Label htmlFor="title" className="text-sm font-medium">Task Title *</Label>
                     <Input
                       id="title"
                       placeholder="e.g., Design new homepage"
@@ -285,7 +286,7 @@ export default function TasksPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="description">Description</Label>
+                    <Label htmlFor="description" className="text-sm font-medium">Description</Label>
                     <Input
                       id="description"
                       placeholder="Add more details about this task..."
@@ -297,7 +298,7 @@ export default function TasksPage() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="project">Project *</Label>
+                      <Label htmlFor="project" className="text-sm font-medium">Project *</Label>
                       <Select
                         value={newTask.projectId}
                         onValueChange={(value) => setNewTask({ ...newTask, projectId: value })}
@@ -318,7 +319,7 @@ export default function TasksPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="priority">Priority</Label>
+                      <Label htmlFor="priority" className="text-sm font-medium">Priority</Label>
                       <Select
                         value={newTask.priority}
                         onValueChange={(value: any) => setNewTask({ ...newTask, priority: value })}
@@ -339,7 +340,7 @@ export default function TasksPage() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
-                      <Label htmlFor="assignee">Assign To (Optional)</Label>
+                      <Label htmlFor="assignee" className="text-sm font-medium">Assign To (Optional)</Label>
                       <Select
                         value={newTask.assigneeId || "UNASSIGNED"}
                         onValueChange={(value) => setNewTask({ ...newTask, assigneeId: value === "UNASSIGNED" ? '' : value })}
@@ -360,7 +361,7 @@ export default function TasksPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="dueDate">Due Date (Optional)</Label>
+                      <Label htmlFor="dueDate" className="text-sm font-medium">Due Date (Optional)</Label>
                       <Input
                         id="dueDate"
                         type="date"
@@ -372,16 +373,17 @@ export default function TasksPage() {
                     </div>
                   </div>
 
-                  <div className="flex justify-end gap-3 pt-4">
+                  <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4">
                     <Button
                       type="button"
                       variant="outline"
                       onClick={() => setIsCreateOpen(false)}
                       disabled={isCreating}
+                      className="w-full sm:w-auto"
                     >
                       Cancel
                     </Button>
-                    <Button type="submit" disabled={isCreating}>
+                    <Button type="submit" disabled={isCreating} className="w-full sm:w-auto">
                       {isCreating ? (
                         <>
                           <svg className="mr-2 h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -405,7 +407,7 @@ export default function TasksPage() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 space-y-4"
+            className="mb-4 sm:mb-6 space-y-3 sm:space-y-4"
           >
             {/* Search Bar */}
             <div className="relative">
@@ -424,10 +426,10 @@ export default function TasksPage() {
               </svg>
               <Input
                 type="text"
-                placeholder="Search tasks by title or description..."
+                placeholder="Search tasks..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-12 text-base"
+                className="pl-10 h-11 sm:h-12 text-sm sm:text-base"
               />
               {searchQuery && (
                 <button
@@ -442,10 +444,10 @@ export default function TasksPage() {
             </div>
 
             {/* Filter Pills */}
-            <div className="flex flex-wrap gap-3">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3">
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full sm:w-[180px] text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -464,7 +466,7 @@ export default function TasksPage() {
 
               {/* Priority Filter */}
               <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full sm:w-[180px] text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
@@ -483,7 +485,7 @@ export default function TasksPage() {
 
               {/* Assignee Filter */}
               <Select value={assigneeFilter} onValueChange={setAssigneeFilter}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-full sm:w-[200px] text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -505,7 +507,7 @@ export default function TasksPage() {
 
               {/* Project Filter */}
               <Select value={projectFilter} onValueChange={setProjectFilter}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-full sm:w-[200px] text-xs sm:text-sm">
                   <div className="flex items-center gap-2">
                     <FolderKanban className="h-4 w-4" />
                     <SelectValue placeholder="Project" />
@@ -535,7 +537,7 @@ export default function TasksPage() {
                     setAssigneeFilter('ALL');
                     setProjectFilter('ALL');
                   }}
-                  className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="col-span-2 sm:col-span-1 flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -557,7 +559,7 @@ export default function TasksPage() {
           {/* Tasks List */}
           {isLoading ? (
             <motion.div
-              className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3"
               initial="hidden"
               animate="visible"
               variants={stagger}
@@ -615,7 +617,7 @@ export default function TasksPage() {
                     )}
                   </motion.div>
                   <motion.p 
-                    className="mb-2 text-xl font-semibold text-foreground"
+                    className="mb-2 text-lg sm:text-xl font-semibold text-foreground"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
@@ -623,7 +625,7 @@ export default function TasksPage() {
                     {tasks.length === 0 ? 'Ready to get organized?' : 'No tasks found'}
                   </motion.p>
                   <motion.p 
-                    className="mb-8 text-center text-sm text-muted-foreground max-w-sm"
+                    className="mb-6 sm:mb-8 text-center text-xs sm:text-sm text-muted-foreground max-w-sm px-4"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
@@ -638,7 +640,7 @@ export default function TasksPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
                     >
-                      <Button size="lg" className="gap-2" onClick={() => setIsCreateOpen(true)}>
+                      <Button size="lg" className="gap-2 w-full sm:w-auto" onClick={() => setIsCreateOpen(true)}>
                         <Plus className="h-5 w-5" />
                         Create Your First Task
                       </Button>
@@ -658,7 +660,7 @@ export default function TasksPage() {
             </motion.div>
           ) : (
             <motion.div
-              className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3"
               variants={stagger}
               initial="hidden"
               animate="visible"
@@ -670,7 +672,7 @@ export default function TasksPage() {
                   }}>
                     <CardHeader className="pb-3 bg-gradient-to-r from-purple-50 to-pink-50">
                       <div className="flex items-start justify-between gap-2">
-                        <CardTitle className="line-clamp-2 text-lg">{task.title}</CardTitle>
+                        <CardTitle className="line-clamp-2 text-base sm:text-lg">{task.title}</CardTitle>
                         <motion.div
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
@@ -680,12 +682,12 @@ export default function TasksPage() {
                           </Badge>
                         </motion.div>
                       </div>
-                      <CardDescription className="line-clamp-2 mt-2">
+                      <CardDescription className="line-clamp-2 mt-2 text-xs sm:text-sm">
                         {task.description || 'No description'}
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="pt-4">
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <div className="rounded-full bg-blue-100 p-1">
