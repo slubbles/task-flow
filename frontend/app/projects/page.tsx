@@ -98,8 +98,8 @@ export default function ProjectsPage() {
     }
   };
 
-  // Check if user can create projects (ADMIN or MANAGER)
-  const canCreateProject = user?.role === 'ADMIN' || user?.role === 'MANAGER';
+  // All authenticated users can create projects
+  const canCreateProject = !!user;
 
   return (
     <ProtectedRoute>
@@ -392,7 +392,11 @@ export default function ProjectsPage() {
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
-                            <Button variant="outline" className="w-full gap-2">
+                            <Button 
+                              variant="outline" 
+                              className="w-full gap-2"
+                              onClick={() => window.location.href = `/projects/${project.id}`}
+                            >
                               <svg
                                 className="h-4 w-4"
                                 fill="none"

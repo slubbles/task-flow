@@ -23,7 +23,7 @@ import { useProjectsStore } from '@/store/projects';
 import { getProjects } from '@/lib/api/projects';
 import { getUsers, User } from '@/lib/api/users';
 import { toast } from 'sonner';
-import { ClipboardList, Search, Plus, Sparkles } from 'lucide-react';
+import { ClipboardList, Search, Plus, Sparkles, FolderKanban } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TaskDetailModal from '@/components/TaskDetailModal';
 import type { Task } from '@/lib/api/tasks';
@@ -58,6 +58,7 @@ export default function TasksPage() {
   const [statusFilter, setStatusFilter] = useState<string>('ALL');
   const [priorityFilter, setPriorityFilter] = useState<string>('ALL');
   const [assigneeFilter, setAssigneeFilter] = useState<string>('ALL');
+  const [projectFilter, setProjectFilter] = useState<string>('ALL');
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [newTask, setNewTask] = useState({
@@ -203,7 +204,10 @@ export default function TasksPage() {
       (assigneeFilter === 'ME' && task.assigneeId === user?.id) ||
       task.assigneeId === assigneeFilter;
 
-    return matchesSearch && matchesStatus && matchesPriority && matchesAssignee;
+    // Project filter
+    const matchesProject = projectFilter === 'ALL' || task.projectId === projectFilter;
+
+    return matchesSearch && matchesStatus && matchesPriority && matchesAssignee && matchesProject;
   });
 
   const handleTaskClick = (task: Task) => {
@@ -499,8 +503,26 @@ export default function TasksPage() {
                 </SelectContent>
               </Select>
 
+              {/* Project Filter */}
+              <Select value={projectFilter} onValueChange={setProjectFilter}>
+                <SelectTrigger className="w-[200px]">
+                  <div className="flex items-center gap-2">
+                    <FolderKanban className="h-4 w-4" />
+                    <SelectValue placeholder="Project" />
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ALL">All Projects</SelectItem>
+                  {projects.map((project) => (
+                    <SelectItem key={project.id} value={project.id}>
+                      {project.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
               {/* Clear Filters Button */}
-              {(searchQuery || statusFilter !== 'ALL' || priorityFilter !== 'ALL' || assigneeFilter !== 'ALL') && (
+              {(searchQuery || statusFilter !== 'ALL' || priorityFilter !== 'ALL' || assigneeFilter !== 'ALL' || projectFilter !== 'ALL') && (
                 <motion.button
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -511,6 +533,7 @@ export default function TasksPage() {
                     setStatusFilter('ALL');
                     setPriorityFilter('ALL');
                     setAssigneeFilter('ALL');
+                    setProjectFilter('ALL');
                   }}
                   className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                 >

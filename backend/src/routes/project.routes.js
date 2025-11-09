@@ -47,11 +47,10 @@ router.get('/', async (req, res, next) => {
 
 /**
  * POST /api/projects - Create new project
- * Only ADMIN and MANAGER can create projects
+ * All authenticated users can create projects
  */
 router.post(
   '/',
-  authorize('ADMIN', 'MANAGER'),
   [
     body('name').trim().notEmpty().withMessage('Project name is required'),
     body('description').optional().trim()
