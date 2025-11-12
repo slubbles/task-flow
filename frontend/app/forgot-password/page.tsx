@@ -77,7 +77,7 @@ export default function ForgotPasswordPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-800">
+              <div className="rounded-lg bg-primary/10 p-4 text-sm text-primary">
                 <p className="font-medium mb-1">📬 Didn't receive the email?</p>
                 <ul className="list-disc ml-4 space-y-1">
                   <li>Check your spam/junk folder</li>
@@ -117,9 +117,9 @@ export default function ForgotPasswordPage() {
         <Card className="w-full max-w-md shadow-xl">
           <CardHeader className="space-y-1">
             <div className="mb-2 flex justify-center">
-              <div className="rounded-full bg-blue-600 p-3">
+              <div className="rounded-full bg-primary p-3">
                 <svg
-                  className="h-6 w-6 text-white"
+                  className="h-6 w-6 text-primary-foreground"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -179,12 +179,12 @@ export default function ForgotPasswordPage() {
             </form>
 
             <div className="mt-6 text-center text-sm">
-              <Link href="/login" className="text-blue-600 hover:underline">
+              <Link href="/login" className="text-primary hover:underline">
                 ← Back to Login
               </Link>
             </div>
 
-            <div className="mt-4 rounded-lg bg-gray-50 p-3 text-xs text-gray-600">
+            <div className="mt-4 rounded-lg bg-muted/30 p-3 text-xs text-muted-foreground">
               <p className="font-medium mb-1">🔒 Security Note:</p>
               <p>For your security, we won't confirm if an email exists in our system. If the email is registered, you'll receive reset instructions.</p>
             </div>

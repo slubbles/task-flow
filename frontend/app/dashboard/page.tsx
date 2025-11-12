@@ -99,7 +99,7 @@ export default function DashboardPage() {
           <h2 className="mb-2 text-2xl sm:text-3xl font-bold">
             Welcome back, {user?.name?.split(' ')[0] || 'User'}! 👋
           </h2>
-          <p className="text-sm sm:text-base text-gray-600">Here's what's happening with your projects today</p>
+          <p className="text-sm sm:text-base text-muted-foreground">Here's what's happening with your projects today</p>
         </motion.div>
 
         <motion.div
@@ -113,14 +113,14 @@ export default function DashboardPage() {
             <Card className="overflow-hidden border-l-4 border-l-blue-600 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">Total Projects</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Total Projects</CardTitle>
                   <motion.div
-                    className="rounded-full bg-blue-100 p-2"
+                    className="rounded-full bg-primary/10 p-2"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
                     <svg
-                      className="h-5 w-5 text-blue-600"
+                      className="h-5 w-5 text-primary"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -137,14 +137,14 @@ export default function DashboardPage() {
               </CardHeader>
                             <CardContent>
                 <motion.p
-                  className="text-4xl font-bold text-gray-900"
+                  className="text-4xl font-bold text-foreground"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
                   {isLoading ? <Skeleton className="h-12 w-16" /> : stats.totalProjects}
                 </motion.p>
-                <p className="mt-2 text-sm text-gray-500">Active projects</p>
+                <p className="mt-2 text-sm text-muted-foreground">Active projects</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -153,7 +153,7 @@ export default function DashboardPage() {
             <Card className="overflow-hidden border-l-4 border-l-green-600 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">Total Tasks</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Total Tasks</CardTitle>
                   <motion.div
                     className="rounded-full bg-green-100 p-2"
                     whileHover={{ rotate: 360 }}
@@ -177,14 +177,14 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <motion.p
-                  className="text-4xl font-bold text-gray-900"
+                  className="text-4xl font-bold text-foreground"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
                 >
                   {isLoading ? <Skeleton className="h-12 w-16" /> : stats.totalTasks}
                 </motion.p>
-                <p className="mt-2 text-sm text-gray-500">All tasks</p>
+                <p className="mt-2 text-sm text-muted-foreground">All tasks</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -193,14 +193,14 @@ export default function DashboardPage() {
             <Card className="overflow-hidden border-l-4 border-l-purple-600 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">My Tasks</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">My Tasks</CardTitle>
                   <motion.div
-                    className="rounded-full bg-purple-100 p-2"
+                    className="rounded-full bg-accent/10 p-2"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                   >
                     <svg
-                      className="h-5 w-5 text-purple-600"
+                      className="h-5 w-5 text-accent-foreground"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -217,14 +217,14 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <motion.p
-                  className="text-4xl font-bold text-gray-900"
+                  className="text-4xl font-bold text-foreground"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
                   {isLoading ? <Skeleton className="h-12 w-16" /> : stats.myTasks}
                 </motion.p>
-                <p className="mt-2 text-sm text-gray-500">Assigned to you</p>
+                <p className="mt-2 text-sm text-muted-foreground">Assigned to you</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -234,7 +234,7 @@ export default function DashboardPage() {
             <Card className="overflow-hidden border-l-4 border-l-orange-600 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">To Do</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">To Do</CardTitle>
                   <motion.div
                     className="rounded-full bg-orange-100 p-2"
                     whileHover={{ scale: 1.1 }}
@@ -257,14 +257,14 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <motion.p
-                  className="text-4xl font-bold text-gray-900"
+                  className="text-4xl font-bold text-foreground"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.5, duration: 0.5 }}
                 >
                   {isLoading ? <Skeleton className="h-12 w-16" /> : stats.todoTasks}
                 </motion.p>
-                <p className="mt-2 text-sm text-gray-500">Tasks pending</p>
+                <p className="mt-2 text-sm text-muted-foreground">Tasks pending</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -273,7 +273,7 @@ export default function DashboardPage() {
             <Card className="overflow-hidden border-l-4 border-l-yellow-600 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">In Progress</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">In Progress</CardTitle>
                   <motion.div
                     className="rounded-full bg-yellow-100 p-2"
                     whileHover={{ scale: 1.1 }}
@@ -296,14 +296,14 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <motion.p
-                  className="text-4xl font-bold text-gray-900"
+                  className="text-4xl font-bold text-foreground"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
                 >
                   {isLoading ? <Skeleton className="h-12 w-16" /> : stats.inProgressTasks}
                 </motion.p>
-                <p className="mt-2 text-sm text-gray-500">Tasks in progress</p>
+                <p className="mt-2 text-sm text-muted-foreground">Tasks in progress</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -312,7 +312,7 @@ export default function DashboardPage() {
             <Card className="overflow-hidden border-l-4 border-l-emerald-600 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium text-gray-600">Completed</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Completed</CardTitle>
                   <motion.div
                     className="rounded-full bg-emerald-100 p-2"
                     whileHover={{ scale: 1.1 }}
@@ -335,14 +335,14 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <motion.p
-                  className="text-4xl font-bold text-gray-900"
+                  className="text-4xl font-bold text-foreground"
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7, duration: 0.5 }}
                 >
                   {isLoading ? <Skeleton className="h-12 w-16" /> : stats.completedTasks}
                 </motion.p>
-                <p className="mt-2 text-sm text-gray-500">Tasks completed</p>
+                <p className="mt-2 text-sm text-muted-foreground">Tasks completed</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -356,11 +356,11 @@ export default function DashboardPage() {
           variants={fadeInUp}
           transition={{ delay: 0.5 }}
         >
-          <Card className="border-2 border-dashed border-gray-200 bg-white/50 shadow-sm backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
+          <Card className="border-2 border-dashed border-border bg-card/50 shadow-sm backdrop-blur transition-all duration-300 hover:border-primary hover:shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
                 <svg
-                  className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600"
+                  className="h-4 w-4 sm:h-5 sm:w-5 text-primary"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

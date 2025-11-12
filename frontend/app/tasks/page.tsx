@@ -238,7 +238,7 @@ export default function TasksPage() {
           >
             <div>
               <h1 className="mb-2 text-2xl sm:text-3xl font-bold">Tasks</h1>
-              <p className="text-sm sm:text-base text-gray-600">Manage all your tasks</p>
+              <p className="text-sm sm:text-base text-muted-foreground">Manage all your tasks</p>
             </div>
             <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
               <DialogTrigger asChild>
@@ -412,7 +412,7 @@ export default function TasksPage() {
             {/* Search Bar */}
             <div className="relative">
               <svg
-                className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+                className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground/60"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -434,7 +434,7 @@ export default function TasksPage() {
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-muted-foreground"
                 >
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -537,7 +537,7 @@ export default function TasksPage() {
                     setAssigneeFilter('ALL');
                     setProjectFilter('ALL');
                   }}
-                  className="col-span-2 sm:col-span-1 flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                  className="col-span-2 sm:col-span-1 flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted/50"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -547,7 +547,7 @@ export default function TasksPage() {
               )}
 
               {/* Results Count */}
-              <div className="ml-auto flex items-center gap-2 rounded-md bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
+              <div className="ml-auto flex items-center gap-2 rounded-md bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
@@ -690,12 +690,12 @@ export default function TasksPage() {
                       <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <div className="rounded-full bg-blue-100 p-1">
-                              <svg className="h-3 w-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="rounded-full bg-primary/10 p-1">
+                              <svg className="h-3 w-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
                             </div>
-                            <span className="text-sm font-medium text-gray-600">Status:</span>
+                            <span className="text-sm font-medium text-muted-foreground">Status:</span>
                           </div>
                           <Badge variant={getStatusColor(task.status)}>
                             {task.status.replace('_', ' ')}
@@ -705,12 +705,12 @@ export default function TasksPage() {
                         {task.assignee && (
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <div className="rounded-full bg-purple-100 p-1">
-                                <svg className="h-3 w-3 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <div className="rounded-full bg-accent/10 p-1">
+                                <svg className="h-3 w-3 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-600">Assigned:</span>
+                              <span className="text-sm font-medium text-muted-foreground">Assigned:</span>
                             </div>
                             <span className="text-sm font-medium">{task.assignee.id === user?.id ? 'You' : task.assignee.name}</span>
                           </div>
@@ -724,7 +724,7 @@ export default function TasksPage() {
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                               </div>
-                              <span className="text-sm font-medium text-gray-600">Due:</span>
+                              <span className="text-sm font-medium text-muted-foreground">Due:</span>
                             </div>
                             <span className="text-sm font-medium">
                               {new Date(task.dueDate).toLocaleDateString()}
@@ -740,7 +740,7 @@ export default function TasksPage() {
                       >
                         <Button 
                           variant="outline" 
-                          className="w-full font-medium hover:bg-purple-50 hover:text-purple-700 hover:border-purple-300 transition-colors"
+                          className="w-full font-medium hover:bg-accent/10 hover:text-accent-foreground hover:border-accent transition-colors"
                           onClick={() => handleTaskClick(task)}
                         >
                           View Details

@@ -201,7 +201,7 @@ export default function TaskDetailModal({
 
           {/* Description */}
           <div>
-            <Label className="text-sm font-semibold text-gray-700">Description</Label>
+            <Label className="text-sm font-semibold text-foreground">Description</Label>
             {isEditing ? (
               <Input
                 value={editedTask.description || ''}
@@ -210,17 +210,17 @@ export default function TaskDetailModal({
                 className="mt-2"
               />
             ) : (
-              <p className="mt-2 text-gray-600">{task.description || 'No description provided'}</p>
+              <p className="mt-2 text-muted-foreground">{task.description || 'No description provided'}</p>
             )}
           </div>
 
           {/* Project */}
           {task.project && (
             <div>
-              <Label className="text-sm font-semibold text-gray-700">Project</Label>
+              <Label className="text-sm font-semibold text-foreground">Project</Label>
               <div className="mt-2 flex items-center gap-2">
-                <div className="rounded-lg bg-blue-100 px-3 py-1">
-                  <span className="text-sm font-medium text-blue-700">{task.project.name}</span>
+                <div className="rounded-lg bg-primary/10 px-3 py-1">
+                  <span className="text-sm font-medium text-primary">{task.project.name}</span>
                 </div>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function TaskDetailModal({
 
           {/* Assignee */}
           <div>
-            <Label className="text-sm font-semibold text-gray-700">Assigned To</Label>
+            <Label className="text-sm font-semibold text-foreground">Assigned To</Label>
             {isEditing ? (
               <Select
                 value={editedTask.assigneeId || ''}
@@ -250,8 +250,8 @@ export default function TaskDetailModal({
               <div className="mt-2">
                 {task.assignee ? (
                   <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100">
-                      <span className="text-sm font-semibold text-purple-700">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-accent/10">
+                      <span className="text-sm font-semibold text-accent-foreground">
                         {task.assignee.name.split(' ').map(n => n[0]).join('')}
                       </span>
                     </div>
@@ -261,7 +261,7 @@ export default function TaskDetailModal({
                     )}
                   </div>
                 ) : (
-                  <span className="text-sm text-gray-500">Unassigned</span>
+                  <span className="text-sm text-muted-foreground">Unassigned</span>
                 )}
               </div>
             )}
@@ -269,7 +269,7 @@ export default function TaskDetailModal({
 
           {/* Due Date */}
           <div>
-            <Label className="text-sm font-semibold text-gray-700">Due Date</Label>
+            <Label className="text-sm font-semibold text-foreground">Due Date</Label>
             {isEditing ? (
               <Input
                 type="date"
@@ -279,7 +279,7 @@ export default function TaskDetailModal({
                 min={new Date().toISOString().split('T')[0]}
               />
             ) : (
-              <p className="mt-2 text-gray-600">
+              <p className="mt-2 text-muted-foreground">
                 {task.dueDate ? new Date(task.dueDate).toLocaleDateString('en-US', {
                   weekday: 'long',
                   year: 'numeric',
@@ -291,7 +291,7 @@ export default function TaskDetailModal({
           </div>
 
           {/* Creator & Timestamps */}
-          <div className="rounded-lg bg-gray-50 p-4 text-sm text-gray-600">
+          <div className="rounded-lg bg-muted/30 p-4 text-sm text-muted-foreground">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <span className="font-medium">Created by:</span>

@@ -81,17 +81,17 @@ class ErrorBoundary extends Component<Props, State> {
             </CardHeader>
             <CardContent className="space-y-4">
               {process.env.NODE_ENV === 'development' && this.state.error && (
-                <div className="rounded-lg bg-gray-100 p-4">
-                  <p className="mb-2 text-sm font-semibold text-gray-700">Error Details:</p>
+                <div className="rounded-lg bg-muted p-4">
+                  <p className="mb-2 text-sm font-semibold text-foreground">Error Details:</p>
                   <pre className="overflow-auto text-xs text-red-600">
                     {this.state.error.toString()}
                   </pre>
                   {this.state.errorInfo && (
                     <details className="mt-2">
-                      <summary className="cursor-pointer text-xs font-medium text-gray-600 hover:text-gray-800">
+                      <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground">
                         Stack Trace
                       </summary>
-                      <pre className="mt-2 overflow-auto text-xs text-gray-600">
+                      <pre className="mt-2 overflow-auto text-xs text-muted-foreground">
                         {this.state.errorInfo.componentStack}
                       </pre>
                     </details>
@@ -132,7 +132,7 @@ class ErrorBoundary extends Component<Props, State> {
                 </Button>
               </div>
 
-              <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-800">
+              <div className="rounded-lg bg-primary/10 p-4 text-sm text-primary">
                 <p className="font-medium mb-1">💡 What can you do?</p>
                 <ul className="list-disc ml-4 space-y-1">
                   <li>Try reloading the page</li>

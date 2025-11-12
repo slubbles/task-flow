@@ -118,7 +118,7 @@ export default function ProjectsPage() {
           >
             <div>
               <h1 className="mb-2 text-2xl sm:text-3xl font-bold">Projects</h1>
-              <p className="text-sm sm:text-base text-gray-600">Manage your team's projects</p>
+              <p className="text-sm sm:text-base text-muted-foreground">Manage your team's projects</p>
             </div>
 
             {canCreateProject && (
@@ -342,9 +342,9 @@ export default function ProjectsPage() {
                       </CardHeader>
                       <CardContent className="pt-4">
                         <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
-                          <div className="flex items-center gap-2 text-gray-600">
+                          <div className="flex items-center gap-2 text-muted-foreground">
                             <svg
-                              className="h-4 w-4 text-blue-600"
+                              className="h-4 w-4 text-primary"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -358,9 +358,9 @@ export default function ProjectsPage() {
                             </svg>
                             <span className="font-medium">{project.owner.name}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-gray-600">
+                          <div className="flex items-center gap-2 text-muted-foreground">
                             <svg
-                              className="h-4 w-4 text-purple-600"
+                              className="h-4 w-4 text-accent-foreground"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -374,7 +374,7 @@ export default function ProjectsPage() {
                             </svg>
                             <span>{project._count?.tasks || 0} tasks</span>
                           </div>
-                          <div className="flex items-center gap-2 text-gray-600">
+                          <div className="flex items-center gap-2 text-muted-foreground">
                             <svg
                               className="h-4 w-4 text-green-600"
                               fill="none"

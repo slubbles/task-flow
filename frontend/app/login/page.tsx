@@ -111,9 +111,9 @@ function LoginContent() {
           <div className="mb-2 flex justify-center">
             <Link href="/" className="group">
               <div className="flex items-center gap-2 transition-transform group-hover:scale-105">
-                <div className="rounded-full bg-blue-600 p-3">
+                <div className="rounded-full bg-primary p-3">
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ function LoginContent() {
                     />
                   </svg>
                 </div>
-                <span className="text-xl font-bold text-blue-600">TaskFlow</span>
+                <span className="text-xl font-bold text-primary">TaskFlow</span>
               </div>
             </Link>
           </div>
@@ -221,7 +221,7 @@ function LoginContent() {
                 <span className="w-full border-t" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-500">
+                <span className="bg-card px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
@@ -247,7 +247,7 @@ function LoginContent() {
                 <span className="w-full border-t" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-500">
+                <span className="bg-card px-2 text-muted-foreground">
                   Don't have an account?
                 </span>
               </div>
@@ -272,10 +272,10 @@ function LoginContent() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="flex min-h-screen items-center justify-center bg-muted/30">
         <Card className="w-full max-w-md mx-4">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
               <div className="h-6 w-6 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
             </div>
             <CardTitle>Loading...</CardTitle>

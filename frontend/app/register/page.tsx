@@ -106,9 +106,9 @@ export default function RegisterPage() {
           <div className="mb-2 flex justify-center">
             <Link href="/" className="group">
               <div className="flex items-center gap-2 transition-transform group-hover:scale-105">
-                <div className="rounded-full bg-blue-600 p-3">
+                <div className="rounded-full bg-primary p-3">
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -121,7 +121,7 @@ export default function RegisterPage() {
                     />
                   </svg>
                 </div>
-                <span className="text-xl font-bold text-blue-600">TaskFlow</span>
+                <span className="text-xl font-bold text-primary">TaskFlow</span>
               </div>
             </Link>
           </div>
@@ -246,7 +246,7 @@ export default function RegisterPage() {
                 <span className="w-full border-t" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-500">
+                <span className="bg-card px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
@@ -272,7 +272,7 @@ export default function RegisterPage() {
                 <span className="w-full border-t" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-2 text-gray-500">
+                <span className="bg-card px-2 text-muted-foreground">
                   Already have an account?
                 </span>
               </div>

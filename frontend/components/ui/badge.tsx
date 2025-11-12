@@ -10,9 +10,9 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-blue-200 bg-blue-50 text-blue-700 [a&]:hover:bg-blue-100 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400",
+          "border-primary/20 bg-primary/10 text-primary [a&]:hover:bg-primary/20 dark:border-primary/30 dark:bg-primary/20 dark:text-primary",
         secondary:
-          "border-gray-200 bg-gray-50 text-gray-700 [a&]:hover:bg-gray-100 dark:border-gray-500/20 dark:bg-gray-500/10 dark:text-gray-400",
+          "border-border bg-muted text-foreground [a&]:hover:bg-muted/80 dark:border-border dark:bg-muted/50 dark:text-muted-foreground",
         destructive:
           "border-red-200 bg-red-50 text-red-700 [a&]:hover:bg-red-100 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400",
         outline:
@@ -22,9 +22,9 @@ const badgeVariants = cva(
         warning:
           "border-amber-200 bg-amber-50 text-amber-700 [a&]:hover:bg-amber-100 dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-400",
         purple:
-          "border-purple-200 bg-purple-50 text-purple-700 [a&]:hover:bg-purple-100 dark:border-purple-500/20 dark:bg-purple-500/10 dark:text-purple-400",
+          "border-accent/20 bg-accent/10 text-accent-foreground [a&]:hover:bg-accent/20 dark:border-accent/30 dark:bg-accent/20 dark:text-accent-foreground",
         indigo:
-          "border-indigo-200 bg-indigo-50 text-indigo-700 [a&]:hover:bg-indigo-100 dark:border-indigo-500/20 dark:bg-indigo-500/10 dark:text-indigo-400",
+          "border-primary/20 bg-primary/10 text-primary [a&]:hover:bg-primary/20 dark:border-primary/30 dark:bg-primary/20 dark:text-primary",
       },
     },
     defaultVariants: {

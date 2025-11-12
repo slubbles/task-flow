@@ -150,8 +150,8 @@ export default function ProfilePage() {
             variants={fadeInUp}
             className="mb-6 sm:mb-8"
           >
-            <h1 className="mb-2 text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Profile Settings</h1>
-            <p className="text-sm sm:text-base text-gray-600">Manage your account settings and preferences</p>
+            <h1 className="mb-2 text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">Profile Settings</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">Manage your account settings and preferences</p>
           </motion.div>
 
           {/* Profile Info Section */}
@@ -167,7 +167,7 @@ export default function ProfilePage() {
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                   <Avatar className="h-16 w-16 sm:h-20 sm:w-20">
                     <AvatarImage src={user?.avatar} alt={user?.name} />
-                    <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-lg sm:text-xl text-white">
+                    <AvatarFallback className="bg-gradient-to-br from-primary to-accent text-lg sm:text-xl text-white">
                       {user?.name ? getInitials(user.name) : "U"}
                     </AvatarFallback>
                   </Avatar>
@@ -175,10 +175,10 @@ export default function ProfilePage() {
                     <CardTitle className="text-xl sm:text-2xl">{user?.name}</CardTitle>
                     <CardDescription className="text-sm sm:text-base">{user?.email}</CardDescription>
                     <div className="mt-2 flex flex-col sm:flex-row items-center gap-2">
-                      <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">
+                      <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                         {user?.role || "Member"}
                       </span>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-muted-foreground">
                         Joined {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
                       </span>
                     </div>
@@ -289,7 +289,7 @@ export default function ProfilePage() {
                           onClick={() =>
                             setShowPasswords({ ...showPasswords, current: !showPasswords.current })
                           }
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                         >
                           {showPasswords.current ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
@@ -364,7 +364,7 @@ export default function ProfilePage() {
                     >
                       {isLoadingPassword ? (
                         <div className="flex items-center gap-2">
-                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-600 border-t-transparent" />
+                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-border border-t-transparent" />
                           Changing Password...
                         </div>
                       ) : (
@@ -393,8 +393,8 @@ export default function ProfilePage() {
               <CardContent>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
                   <div>
-                    <p className="font-medium text-sm sm:text-base text-gray-900">Delete Account</p>
-                    <p className="text-xs sm:text-sm text-gray-600">
+                    <p className="font-medium text-sm sm:text-base text-foreground">Delete Account</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Permanently delete your account and all associated data
                     </p>
                   </div>

@@ -173,15 +173,15 @@ function AuthCallbackContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h2 className="mb-3 text-3xl font-bold text-gray-900">{errorTitle}</h2>
-            <p className="mb-6 text-lg text-gray-600">{errorDesc}</p>
+            <h2 className="mb-3 text-3xl font-bold text-foreground">{errorTitle}</h2>
+            <p className="mb-6 text-lg text-muted-foreground">{errorDesc}</p>
             
             {/* Countdown */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="mb-6 flex items-center justify-center gap-2 text-sm text-gray-500"
+              className="mb-6 flex items-center justify-center gap-2 text-sm text-muted-foreground"
             >
               <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -253,8 +253,8 @@ function AuthCallbackContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <h2 className="mb-2 text-3xl font-bold text-gray-900">Welcome! 🎉</h2>
-            <p className="text-lg text-gray-600">Redirecting to your dashboard...</p>
+            <h2 className="mb-2 text-3xl font-bold text-foreground">Welcome! 🎉</h2>
+            <p className="text-lg text-muted-foreground">Redirecting to your dashboard...</p>
           </motion.div>
         </motion.div>
       </div>
@@ -278,13 +278,13 @@ function AuthCallbackContent() {
         >
           <div className="relative h-20 w-20">
             <motion.div
-              className="absolute inset-0 rounded-full bg-blue-600 opacity-25"
+              className="absolute inset-0 rounded-full bg-primary opacity-25"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <svg
-                className="h-10 w-10 text-blue-600"
+                className="h-10 w-10 text-primary"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -305,7 +305,7 @@ function AuthCallbackContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="mb-3 text-3xl font-bold text-gray-900"
+          className="mb-3 text-3xl font-bold text-foreground"
         >
           Completing Sign In
         </motion.h2>
@@ -315,7 +315,7 @@ function AuthCallbackContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="mb-8 text-lg text-gray-600"
+          className="mb-8 text-lg text-muted-foreground"
         >
           Setting up your account...
         </motion.p>
@@ -327,7 +327,7 @@ function AuthCallbackContent() {
           transition={{ delay: 0.4 }}
           className="mx-auto w-full max-w-xs"
         >
-          <div className="mb-2 h-2 overflow-hidden rounded-full bg-gray-200">
+          <div className="mb-2 h-2 overflow-hidden rounded-full bg-muted">
             <motion.div
               className="h-full bg-gradient-to-r from-blue-600 to-indigo-600"
               initial={{ width: 0 }}
@@ -335,7 +335,7 @@ function AuthCallbackContent() {
               transition={{ duration: 0.3 }}
             />
           </div>
-          <p className="text-sm text-gray-500">{progress}% complete</p>
+          <p className="text-sm text-muted-foreground">{progress}% complete</p>
         </motion.div>
       </motion.div>
     </div>
@@ -347,8 +347,8 @@ export default function AuthCallback() {
     <Suspense fallback={
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="text-gray-600">Loading...</p>
+          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     }>

@@ -81,8 +81,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-16">
         {/* Background Gradient */}
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.blue.100),white)] opacity-20" />
-        <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-blue-600/10 ring-1 ring-blue-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.muted),theme(colors.background))] opacity-20" />
+        <div className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-card shadow-xl shadow-primary/10 ring-1 ring-border sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
         
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
           <motion.div
@@ -92,7 +92,7 @@ export default function Home() {
             variants={stagger}
           >
             <motion.div variants={fadeInUp}>
-              <Badge className="mb-6 bg-blue-50 text-blue-700 hover:bg-blue-100">
+              <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/20">
                 Enterprise Task Management
               </Badge>
             </motion.div>
@@ -165,7 +165,7 @@ export default function Home() {
             </motion.div>
             
             <motion.p
-              className="mt-6 text-sm text-gray-500"
+              className="mt-6 text-sm text-muted-foreground"
               variants={fadeIn}
               transition={{ delay: 0.6 }}
             >
@@ -176,7 +176,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="bg-gray-50 py-16 sm:py-24 lg:py-32">
+      <section className="bg-muted/30 py-16 sm:py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="mx-auto max-w-2xl text-center"
@@ -185,13 +185,13 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h2 className="mb-4 text-base font-semibold leading-7 text-blue-600">
+            <h2 className="mb-4 text-base font-semibold leading-7 text-primary">
               Everything you need
             </h2>
-            <p className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <p className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Built for Enterprise Teams
             </p>
-            <p className="mt-4 text-lg leading-8 text-gray-600">
+            <p className="mt-4 text-lg leading-8 text-muted-foreground">
               Powerful features to help your team stay organized and productive
             </p>
           </motion.div>
@@ -206,17 +206,17 @@ export default function Home() {
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {/* Feature 1 */}
               <motion.div
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 transition-all hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border transition-all hover:shadow-lg"
                 variants={scaleIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <motion.div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -229,27 +229,27 @@ export default function Home() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-foreground">
                   Project Management
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Organize work into projects with customizable workflows, milestones, and progress tracking.
                 </p>
               </motion.div>
 
               {/* Feature 2 */}
               <motion.div
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 transition-all hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border transition-all hover:shadow-lg"
                 variants={scaleIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <motion.div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -262,27 +262,27 @@ export default function Home() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-foreground">
                   Team Collaboration
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Assign tasks, share updates, and collaborate in real-time with your entire team.
                 </p>
               </motion.div>
 
               {/* Feature 3 */}
               <motion.div
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 transition-all hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border transition-all hover:shadow-lg"
                 variants={scaleIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <motion.div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -295,27 +295,27 @@ export default function Home() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-foreground">
                   Role-Based Access
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Enterprise-grade security with granular permissions and role management.
                 </p>
               </motion.div>
 
               {/* Feature 4 */}
               <motion.div
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 transition-all hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border transition-all hover:shadow-lg"
                 variants={scaleIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <motion.div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -328,27 +328,27 @@ export default function Home() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-foreground">
                   Real-Time Updates
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Stay synchronized with instant notifications and live activity feeds.
                 </p>
               </motion.div>
 
               {/* Feature 5 */}
               <motion.div
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 transition-all hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border transition-all hover:shadow-lg"
                 variants={scaleIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <motion.div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -361,27 +361,27 @@ export default function Home() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-foreground">
                   Analytics & Reporting
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Track team performance with detailed analytics and customizable reports.
                 </p>
               </motion.div>
 
               {/* Feature 6 */}
               <motion.div
-                className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-200 transition-all hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border transition-all hover:shadow-lg"
                 variants={scaleIn}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
                 <motion.div
-                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-600"
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary"
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-6 w-6 text-primary-foreground"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -394,10 +394,10 @@ export default function Home() {
                     />
                   </svg>
                 </motion.div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                <h3 className="mb-2 text-xl font-semibold text-foreground">
                   Mobile Ready
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Access your tasks from anywhere with our responsive web application.
                 </p>
               </motion.div>
@@ -407,7 +407,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-white py-24 sm:py-32">
+      <section className="bg-card py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="mx-auto max-w-2xl text-center"
@@ -416,10 +416,10 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Trusted by teams worldwide
             </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600">
+            <p className="mt-4 text-lg leading-8 text-muted-foreground">
               Join thousands of teams already using TaskFlow to manage their projects
             </p>
           </motion.div>
@@ -431,12 +431,12 @@ export default function Home() {
             variants={stagger}
           >
             <motion.div
-              className="rounded-2xl bg-gray-50 p-8"
+              className="rounded-2xl bg-muted/50 p-8"
               variants={scaleIn}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <motion.div
-                className="text-4xl font-bold text-blue-600"
+                className="text-4xl font-bold text-primary"
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -444,16 +444,16 @@ export default function Home() {
               >
                 10K+
               </motion.div>
-              <div className="mt-2 text-sm font-semibold text-gray-900">Active Teams</div>
-              <div className="mt-1 text-sm text-gray-600">Managing projects daily</div>
+              <div className="mt-2 text-sm font-semibold text-foreground">Active Teams</div>
+              <div className="mt-1 text-sm text-muted-foreground">Managing projects daily</div>
             </motion.div>
             <motion.div
-              className="rounded-2xl bg-gray-50 p-8"
+              className="rounded-2xl bg-muted/50 p-8"
               variants={scaleIn}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <motion.div
-                className="text-4xl font-bold text-blue-600"
+                className="text-4xl font-bold text-primary"
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -461,16 +461,16 @@ export default function Home() {
               >
                 99.9%
               </motion.div>
-              <div className="mt-2 text-sm font-semibold text-gray-900">Uptime</div>
-              <div className="mt-1 text-sm text-gray-600">Reliable and secure</div>
+              <div className="mt-2 text-sm font-semibold text-foreground">Uptime</div>
+              <div className="mt-1 text-sm text-muted-foreground">Reliable and secure</div>
             </motion.div>
             <motion.div
-              className="rounded-2xl bg-gray-50 p-8"
+              className="rounded-2xl bg-muted/50 p-8"
               variants={scaleIn}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <motion.div
-                className="text-4xl font-bold text-blue-600"
+                className="text-4xl font-bold text-primary"
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -478,15 +478,15 @@ export default function Home() {
               >
                 500K+
               </motion.div>
-              <div className="mt-2 text-sm font-semibold text-gray-900">Tasks Completed</div>
-              <div className="mt-1 text-sm text-gray-600">Every month</div>
+              <div className="mt-2 text-sm font-semibold text-foreground">Tasks Completed</div>
+              <div className="mt-1 text-sm text-muted-foreground">Every month</div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative isolate overflow-hidden bg-blue-600 px-6 py-24 sm:py-32 lg:px-8">
+      <section className="relative isolate overflow-hidden bg-primary px-6 py-24 sm:py-32 lg:px-8">
         <motion.div
           className="mx-auto max-w-2xl text-center"
           initial="hidden"
@@ -495,13 +495,13 @@ export default function Home() {
           variants={stagger}
         >
           <motion.h2
-            className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
+            className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl"
             variants={fadeInUp}
           >
             Ready to get started?
           </motion.h2>
           <motion.p
-            className="mx-auto mt-6 max-w-xl text-lg leading-8 text-blue-100"
+            className="mx-auto mt-6 max-w-xl text-lg leading-8 text-primary-foreground/80"
             variants={fadeInUp}
           >
             Join thousands of teams who trust TaskFlow for their project management needs.
@@ -516,7 +516,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-100">
+                <Button size="lg" variant="secondary" className="bg-card text-foreground hover:bg-muted">
                   Start Free Trial
                 </Button>
               </motion.div>
@@ -526,7 +526,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-blue-700">
+                <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
                   Sign In
                 </Button>
               </motion.div>
@@ -553,7 +553,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900">
+      <footer className="bg-muted/50 border-t border-border">
         <motion.div
           className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
           initial={{ opacity: 0 }}
@@ -566,9 +566,9 @@ export default function Home() {
               className="flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
                 <svg
-                  className="h-5 w-5 text-white"
+                  className="h-5 w-5 text-primary-foreground"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -581,9 +581,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-semibold text-white">TaskFlow</span>
+              <span className="text-xl font-semibold text-foreground">TaskFlow</span>
             </motion.div>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-muted-foreground">
               © 2025 TaskFlow. All rights reserved.
             </p>
           </div>

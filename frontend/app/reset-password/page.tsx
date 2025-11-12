@@ -120,7 +120,7 @@ function ResetPasswordContent() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="rounded-lg bg-blue-50 p-4 text-center text-sm text-blue-800">
+              <div className="rounded-lg bg-primary/10 p-4 text-center text-sm text-primary">
                 <p className="flex items-center justify-center gap-2">
                   <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -152,9 +152,9 @@ function ResetPasswordContent() {
         <Card className="w-full max-w-md shadow-xl">
           <CardHeader className="space-y-1">
             <div className="mb-2 flex justify-center">
-              <div className="rounded-full bg-blue-600 p-3">
+              <div className="rounded-full bg-primary p-3">
                 <svg
-                  className="h-6 w-6 text-white"
+                  className="h-6 w-6 text-primary-foreground"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -266,7 +266,7 @@ function ResetPasswordContent() {
             </form>
 
             <div className="mt-6 text-center text-sm">
-              <Link href="/login" className="text-blue-600 hover:underline">
+              <Link href="/login" className="text-primary hover:underline">
                 ← Back to Login
               </Link>
             </div>

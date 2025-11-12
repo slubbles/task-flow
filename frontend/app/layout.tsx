@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Graphite theme fonts
+const montserrat = Montserrat({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const firaCode = Fira_Code({
+  variable: "--font-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${montserrat.variable} ${firaCode.variable} ${inter.variable} antialiased font-sans`}
       >
         <ErrorBoundary>
           {children}
@@ -39,8 +48,9 @@ export default function RootLayout({
             closeButton
             toastOptions={{
               style: {
-                background: 'white',
-                border: '1px solid #e5e7eb',
+                background: 'var(--card)',
+                color: 'var(--card-foreground)',
+                border: '1px solid var(--border)',
                 padding: '16px',
               },
               className: 'text-sm font-medium',
